@@ -1,3 +1,7 @@
+// Jogo Educacional de Ciências da Natureza
+// Autor: Você! Código comentado para fácil manutenção
+
+// Perguntas divididas por fases e temas
 const fases = [
   {
     nome: "1ª Fase – Biologia",
@@ -157,12 +161,14 @@ const fases = [
   }
 ];
 
+// Estado do jogo
 let faseAtual = 0;
 let perguntaAtual = 0;
 let pontos = 0;
 let dicasColetadas = [];
 let usuario = "";
 
+// Elementos DOM
 const mainBg = document.getElementById('main-bg');
 const faseLabel = document.getElementById('fase-label');
 const scoreEl = document.getElementById('score');
@@ -177,21 +183,25 @@ const notebookList = document.getElementById('notebook-list');
 const closeNotebook = document.getElementById('close-notebook');
 const userDisplay = document.getElementById('user-display');
 
+// Login
 const loginArea = document.getElementById('login-area');
 const loginBtn = document.getElementById('login-btn');
 const usernameInput = document.getElementById('username');
 const gameContainer = document.getElementById('game-container');
 
+// Tela final
 const endArea = document.getElementById('end-area');
 const endTitle = document.getElementById('end-title');
 const endScore = document.getElementById('end-score');
 const endNotebookList = document.getElementById('end-notebook-list');
 
+// Função para atualizar o tema visual da fase
 function atualizarTema() {
   mainBg.classList.remove('bg-green-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100');
   mainBg.classList.add(fases[faseAtual].tema);
 }
 
+// Mostra a pergunta atual
 function mostrarPergunta() {
   atualizarTema();
   const fase = fases[faseAtual];
@@ -203,50 +213,55 @@ function mostrarPergunta() {
   feedbackEl.textContent = '';
   nextBtn.classList.add('hidden');
 
-
+  // Atualiza barra de progresso
   const progresso = ((perguntaAtual) / fase.perguntas.length) * 100;
   progressBar.style.width = `${progresso}%`;
 
+  // Mostra opções
   optionsEl.innerHTML = '';
   perguntaObj.opcoes.forEach((opcao, idx) => {
     const btn = document.createElement('button');
-    btn.className = "w-full bg-white border border-gray-300 rounded px-4 py-2 text-left hover:bg-blue-200 transition";
+    btn.className = "option-btn w-full bg-white border border-gray-300 rounded px-4 py-2 text-left transition";
     btn.textContent = opcao;
-    btn.onclick = () => checarResposta(idx);
+    btn.onclick = () => checarResposta(idx, btn);
     optionsEl.appendChild(btn);
   });
 }
-function checarResposta(idx) {
+
+// Modificado para animar a caixa da opção clicada
+function checarResposta(idx, btnClicado) {
   const fase = fases[faseAtual];
   const perguntaObj = fase.perguntas[perguntaAtual];
 
-
+  // Desabilita todas as opções
   Array.from(optionsEl.children).forEach(btn => btn.disabled = true);
+
+  // Remove animações anteriores
+  Array.from(optionsEl.children).forEach(btn => {
+    btn.classList.remove('animate-correct', 'animate-wrong');
+  });
 
   if (idx === perguntaObj.correta) {
     pontos += 10;
-    feedbackEl.textContent = "Correto! 🎉";
-    feedbackEl.className = "text-green-600 text-center text-lg font-bold mb-2";
-
+    btnClicado.classList.add('animate-correct');
     if (!dicasColetadas.includes(perguntaObj.dica)) {
       dicasColetadas.push(perguntaObj.dica);
     }
     nextBtn.classList.remove('hidden');
   } else {
     pontos = Math.max(0, pontos - 2);
-    feedbackEl.textContent = "Errado! Tente novamente.";
-    feedbackEl.className = "text-red-600 text-center text-lg font-bold mb-2";
-
+    btnClicado.classList.add('animate-wrong');
     if (!dicasColetadas.includes(perguntaObj.dica)) {
       dicasColetadas.push(perguntaObj.dica);
     }
-
+    // Reabilita opções para tentar de novo
     Array.from(optionsEl.children).forEach(btn => btn.disabled = false);
   }
   scoreEl.textContent = `Pontos: ${pontos}`;
+  feedbackEl.textContent = '';
 }
 
-
+// Próxima pergunta ou fase
 nextBtn.onclick = () => {
   const fase = fases[faseAtual];
   perguntaAtual++;
@@ -265,11 +280,11 @@ function mostrarFim() {
   atualizarTema();
   gameContainer.classList.add('hidden');
   endArea.classList.remove('hidden');
-
+  // Calcula pontuação máxima
   let pontosMaximos = fases.reduce((acc, fase) => acc + fase.perguntas.length * 10, 0);
   endTitle.textContent = `Parabéns, ${usuario}! Você concluiu o quiz! 🎉`;
   endScore.textContent = `Sua pontuação foi de: ${pontos}/${pontosMaximos}`;
-
+  // Mostra as dicas coletadas
   endNotebookList.innerHTML = '';
   dicasColetadas.forEach(dica => {
     const li = document.createElement('li');
@@ -278,7 +293,7 @@ function mostrarFim() {
   });
 }
 
-
+// Caderno virtual
 notebookBtn.onclick = () => {
   notebook.classList.remove('hidden');
   notebookList.innerHTML = '';
@@ -293,7 +308,7 @@ closeNotebook.onclick = () => {
   notebook.classList.add('hidden');
 };
 
-
+// Login
 loginBtn.onclick = () => {
   const nome = usernameInput.value.trim();
   if (nome.length < 2) {
@@ -308,11 +323,24 @@ loginBtn.onclick = () => {
   mostrarPergunta();
 };
 
-
+// Permite Enter para login
 usernameInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') loginBtn.click();
 });
 
-window.addEventListener('DOMContentLoaded', function() {
+// Função para embaralhar um array (Fisher-Yates)
+function embaralharArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
+// Embaralha as perguntas de cada fase ao iniciar o jogo
+fases.forEach(fase => {
+  embaralharArray(fase.perguntas);
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+  // ...todo o seu código aqui...
 });
