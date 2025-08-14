@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jogo Educacional - Ciências da Natureza</title>
-
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center transition-colors duration-700" id="main-bg">
-
+  <!-- Tela de Login -->
   <div id="login-area" class="w-full max-w-md bg-white/90 rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center">
     <h1 class="text-2xl font-bold mb-4 text-gray-800">Bem-vindo ao Jogo das Ciências!</h1>
     <label for="username" class="mb-2 text-gray-700">Digite seu nome:</label>
@@ -17,7 +17,8 @@
     <button id="login-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition">Entrar</button>
   </div>
 
-  <div id="game-container" class="w-full max-w-xl bg-white/80 rounded-lg shadow-lg p-6 mt-8 relative hidden">
+  <!-- Área do Jogo -->
+  <div id="game-container" class="w-full max-w-xl bg-white/80 rounded-lg shadow-2xl p-6 mt-8 relative hidden transition-all duration-500">
     <header class="flex justify-between items-center mb-4">
       <h1 class="text-2xl font-bold text-gray-800">Jogo das Ciências</h1>
       <div class="flex items-center gap-2">
@@ -40,13 +41,14 @@
       </div>
       <div id="question-area" class="mb-4">
         <h2 id="question" class="text-lg font-semibold text-gray-800 mb-3"></h2>
-        <div id="options" class="grid grid-cols-1 gap-3"></div>
+        <div id="options" class="grid grid-cols-1 gap-5"></div>
       </div>
       <div id="feedback" class="text-center text-lg font-bold mb-2"></div>
       <button id="next-btn" class="hidden bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Próxima</button>
     </div>
   </div>
 
+  <!-- Tela Final -->
   <div id="end-area" class="w-full max-w-xl bg-white/90 rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center hidden">
     <h2 id="end-title" class="text-2xl font-bold mb-4 text-green-700"></h2>
     <p id="end-score" class="mb-4 text-lg"></p>
@@ -57,6 +59,7 @@
   </div>
 
   <footer class="mt-8 text-gray-500 text-sm">© 2025 Jogo Educacional | Ciências da Natureza</footer>
+  <!-- jsPDF para exportar PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
