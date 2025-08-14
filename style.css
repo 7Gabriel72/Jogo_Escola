@@ -66,7 +66,7 @@ h1 {
     width: 80%;
     max-width: 600px;
     margin-top: 20px;
-    display: none;
+    display: none; /* Hidden by default */
 }
 
 .fade-in {
@@ -82,6 +82,7 @@ h1 {
     }
 }
 
+/* Backgrounds for different phases */
 .phase-1 {
     background-image: url('assets/backgrounds/phase1.jpg');
     background-size: cover;
@@ -97,11 +98,64 @@ h1 {
     background-size: cover;
 }
 
+/* Add more phases as needed */
+
+/* Animações suaves para transições de fases e perguntas */
 #game-area {
   transition: background 0.7s, color 0.7s;
 }
 
+/* Caderno virtual overlay */
 #notebook {
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.2);
   animation: fadeIn 0.4s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opções de resposta como caixas flutuantes com animação e sombra */
+#options button {
+  background: white;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+#options button:hover:not(:disabled) {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(59,130,246,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  background: #e0f2fe;
+}
+
+/* Sombra mais forte no container das perguntas */
+#game-container {
+  box-shadow: 0 8px 32px rgba(59,130,246,0.12), 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* Animação para resposta correta */
+@keyframes correct-flash {
+  0%   { box-shadow: 0 0 0 0 #22c55e44; background: #fff; }
+  30%  { box-shadow: 0 0 16px 8px #22c55e88; background: #bbf7d0; }
+  100% { box-shadow: 0 2px 8px rgba(0,0,0,0.10); background: #fff; }
+}
+.animate-correct {
+  animation: correct-flash 0.6s;
+}
+
+/* Animação para resposta errada */
+@keyframes wrong-flash {
+  0%   { box-shadow: 0 0 0 0 #ef444444; background: #fff; }
+  30%  { box-shadow: 0 0 16px 8px #ef444488; background: #fecaca; }
+  100% { box-shadow: 0 2px 8px rgba(0,0,0,0.10); background: #fff; }
+}
+.animate-wrong {
+  animation: wrong-flash 0.6s;
 }
