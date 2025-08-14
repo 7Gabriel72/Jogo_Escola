@@ -1,0 +1,148 @@
+{
+  "phases": [
+    {
+      "phase": 2,
+      "subject": "Biologia",
+      "questions": [
+        {
+          "question": "Qual é a principal função do sistema excretor?",
+          "options": [
+            "Produzir hormônios",
+            "Eliminar resíduos do corpo",
+            "Transportar oxigênio",
+            "Regular a temperatura"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Qual doença é causada por uma falha no sistema imunológico?",
+          "options": [
+            "Diabetes",
+            "AIDS",
+            "Hipertensão",
+            "Asma"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Qual é o papel fisiológico dos rins?",
+          "options": [
+            "Filtrar o sangue",
+            "Produzir bile",
+            "Armazenar nutrientes",
+            "Regular a pressão arterial"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "subject": "Química",
+      "questions": [
+        {
+          "question": "Qual dos seguintes é um material sólido?",
+          "options": [
+            "Água",
+            "Vapor",
+            "Gelo",
+            "Ar"
+          ],
+          "answer": 2
+        },
+        {
+          "question": "Qual é o tipo de ligação que ocorre entre átomos de sódio e cloro?",
+          "options": [
+            "Ligação covalente",
+            "Ligação iônica",
+            "Ligação metálica",
+            "Ligação de hidrogênio"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Qual é a fórmula do composto água?",
+          "options": [
+            "H2O",
+            "CO2",
+            "NaCl",
+            "O2"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "phase": 10,
+      "subject": "Biologia/Fotossíntese",
+      "questions": [
+        {
+          "question": "Qual é o principal produto da fotossíntese?",
+          "options": [
+            "Oxigênio",
+            "Dióxido de carbono",
+            "Água",
+            "Glicose"
+          ],
+          "answer": 3
+        },
+        {
+          "question": "Os seres vivos são compostos por quais unidades básicas?",
+          "options": [
+            "Moléculas",
+            "Células",
+            "Átomos",
+            "Organismos"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Qual é a função da fisiologia humana?",
+          "options": [
+            "Estudar a evolução",
+            "Analisar o comportamento",
+            "Entender o funcionamento do corpo",
+            "Classificar os seres vivos"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "phase": "extra",
+      "subject": "Física e Química",
+      "questions": [
+        {
+          "question": "Qual é a fórmula da energia cinética?",
+          "options": [
+            "mgh",
+            "1/2 mv²",
+            "F=ma",
+            "E=mc²"
+          ],
+          "answer": 1
+        },
+        {
+          "question": "Qual é a classificação geral dos seres vivos?",
+          "options": [
+            "Reino, Filo, Classe",
+            "Espécie, Gênero, Família",
+            "Ordem, Classe, Filo",
+            "Domínio, Reino, Filo"
+          ],
+          "answer": 3
+        },
+        {
+          "question": "O que descreve a gravitação de Kepler?",
+          "options": [
+            "Leis do movimento",
+            "Leis da termodinâmica",
+            "Leis da ótica",
+            "Leis da gravitação universal"
+          ],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}

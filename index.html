@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo Educacional - Ciências da Natureza</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center transition-colors duration-700" id="main-bg">
+
+  <div id="login-area" class="w-full max-w-md bg-white/90 rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">Bem-vindo ao Jogo das Ciências!</h1>
+    <label for="username" class="mb-2 text-gray-700">Digite seu nome:</label>
+    <input id="username" type="text" class="border border-gray-300 rounded px-4 py-2 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Seu nome">
+    <button id="login-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition">Entrar</button>
+  </div>
+
+  <div id="game-container" class="w-full max-w-xl bg-white/80 rounded-lg shadow-lg p-6 mt-8 relative hidden">
+    <header class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold text-gray-800">Jogo das Ciências</h1>
+      <div class="flex items-center gap-2">
+        <span id="user-display" class="text-gray-700 font-semibold"></span>
+        <button id="notebook-btn" class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded shadow transition">Caderno</button>
+      </div>
+    </header>
+    <div id="notebook" class="hidden absolute top-0 left-0 w-full h-full bg-white/95 rounded-lg p-6 z-20 overflow-y-auto">
+      <h2 class="text-xl font-semibold mb-2">Caderno Virtual</h2>
+      <ul id="notebook-list" class="list-disc pl-5 text-gray-700"></ul>
+      <button id="close-notebook" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Fechar</button>
+    </div>
+    <div id="game-area" class="transition-all duration-500">
+      <div class="mb-2 flex justify-between items-center">
+        <span id="fase-label" class="text-sm font-semibold text-gray-600"></span>
+        <span id="score" class="text-sm font-semibold text-green-700"></span>
+      </div>
+      <div id="progress-bar" class="w-full bg-gray-200 rounded-full h-3 mb-4">
+        <div id="progress" class="bg-blue-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+      </div>
+      <div id="question-area" class="mb-4">
+        <h2 id="question" class="text-lg font-semibold text-gray-800 mb-3"></h2>
+        <div id="options" class="grid grid-cols-1 gap-3"></div>
+      </div>
+      <div id="feedback" class="text-center text-lg font-bold mb-2"></div>
+      <button id="next-btn" class="hidden bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Próxima</button>
+    </div>
+  </div>
+
+  <div id="end-area" class="w-full max-w-xl bg-white/90 rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center hidden">
+    <h2 id="end-title" class="text-2xl font-bold mb-4 text-green-700"></h2>
+    <p id="end-score" class="mb-4 text-lg"></p>
+    <div class="w-full max-w-md bg-yellow-100 rounded p-4">
+      <h3 class="font-semibold mb-2">Seu Caderno Virtual:</h3>
+      <ul id="end-notebook-list" class="list-disc pl-5 text-gray-700"></ul>
+    </div>
+  </div>
+
+  <footer class="mt-8 text-gray-500 text-sm">© 2025 Jogo Educacional | Ciências da Natureza</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
