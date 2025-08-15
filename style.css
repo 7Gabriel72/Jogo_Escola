@@ -159,3 +159,20 @@ h1 {
 .animate-wrong {
   animation: wrong-flash 0.6s;
 }
+
+/* Fundos temáticos para cada fase */
+.bg-bio {
+  background: url('../img/Biologia.jpg') center center/cover no-repeat !important;
+}
+.bg-quim {
+  background: url('../img/Quimica.jpg') center center/cover no-repeat !important;
+}
+.bg-fis {
+  background: url('../img/Fisica.jpg') center center/cover no-repeat !important;
+}
+
+/* Ajuste para garantir contraste do conteúdo */
+#game-container, #login-area, #end-area {
+  background-color: rgba(255,255,255,0.90);
+  backdrop-filter: blur(2px);
+}
