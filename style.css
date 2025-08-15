@@ -162,13 +162,13 @@ h1 {
 
 /* Fundos temáticos para cada fase */
 .bg-bio {
-  background: url('../img/Biologia.jpg') center center/cover no-repeat !important;
+  background: url('Biologia.jpg') center center/cover no-repeat !important;
 }
 .bg-quim {
-  background: url('../img/Quimica.jpg') center center/cover no-repeat !important;
+  background: url('Quimica.jpg') center center/cover no-repeat !important;
 }
 .bg-fis {
-  background: url('../img/Fisica.jpg') center center/cover no-repeat !important;
+  background: url('Fisica.jpg') center center/cover no-repeat !important;
 }
 
 /* Ajuste para garantir contraste do conteúdo */
