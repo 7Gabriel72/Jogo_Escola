@@ -1,5 +1,5 @@
 // Jogo Educacional de Ciências da Natureza
-// Autor: Você! Código comentado para fácil manutenção
+// Autor: Gabriel Marques! Código comentado para fácil manutenção
 
 // Perguntas divididas por fases e temas
 const fases = [
@@ -195,10 +195,21 @@ const endTitle = document.getElementById('end-title');
 const endScore = document.getElementById('end-score');
 const endNotebookList = document.getElementById('end-notebook-list');
 
-// Função para atualizar o tema visual da fase
+// Função para atualizar o tema visual e o fundo por fase
 function atualizarTema() {
-  mainBg.classList.remove('bg-green-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100');
-  mainBg.classList.add(fases[faseAtual].tema);
+  // Remove fundos anteriores
+  mainBg.classList.remove('bg-bio', 'bg-quim', 'bg-fis', 'bg-green-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100');
+  const fase = fases[faseAtual];
+  // Define fundo por área
+  if (fase.nome.toLowerCase().includes('biologia')) {
+    mainBg.classList.add('bg-bio');
+  } else if (fase.nome.toLowerCase().includes('química')) {
+    mainBg.classList.add('bg-quim');
+  } else if (fase.nome.toLowerCase().includes('física')) {
+    mainBg.classList.add('bg-fis');
+  }
+  // (opcional) mantém cor de fallback
+  mainBg.classList.add(fase.tema);
 }
 
 // Mostra a pergunta atual
