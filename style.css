@@ -13,109 +13,33 @@ h1 {
     margin: 20px 0;
 }
 
-.question-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.question-container:hover {
-    transform: scale(1.02);
-}
-
-.option {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.option:hover {
-    background-color: #0056b3;
-}
-
-.progress-bar {
-    width: 80%;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    margin: 20px 0;
-}
-
-.progress {
-    height: 20px;
-    background-color: #4caf50;
-    border-radius: 5px;
-    width: 0;
-    transition: width 0.5s ease;
-}
-
-.notebook {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 80%;
-    max-width: 600px;
-    margin-top: 20px;
-    display: none; /* Hidden by default */
-}
-
 .fade-in {
     animation: fadeIn 0.5s ease-in;
 }
-
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-/* Backgrounds for different phases */
-.phase-1 {
-    background-image: url('assets/backgrounds/phase1.jpg');
-    background-size: cover;
+.bg-bio {
+  background: url('Biologia.jpg') center center/cover no-repeat !important;
+}
+.bg-quim {
+  background: url('Quimica.jpg') center center/cover no-repeat !important;
+}
+.bg-fis {
+  background: url('Fisica.jpg') center center/cover no-repeat !important;
 }
 
-.phase-2 {
-    background-image: url('assets/backgrounds/phase2.jpg');
-    background-size: cover;
-}
-
-.phase-3 {
-    background-image: url('assets/backgrounds/phase3.jpg');
-    background-size: cover;
-}
-
-/* Add more phases as needed */
-
-/* Animações suaves para transições de fases e perguntas */
 #game-area {
   transition: background 0.7s, color 0.7s;
 }
 
-/* Caderno virtual overlay */
 #notebook {
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.2);
   animation: fadeIn 0.4s;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 
-/* Opções de resposta como caixas flutuantes com animação e sombra */
 #options button {
   background: white;
   border: none;
@@ -135,12 +59,10 @@ h1 {
   background: #e0f2fe;
 }
 
-/* Sombra mais forte no container das perguntas */
 #game-container {
   box-shadow: 0 8px 32px rgba(59,130,246,0.12), 0 2px 8px rgba(0,0,0,0.10);
 }
 
-/* Animação para resposta correta */
 @keyframes correct-flash {
   0%   { box-shadow: 0 0 0 0 #22c55e44; background: #fff; }
   30%  { box-shadow: 0 0 16px 8px #22c55e88; background: #bbf7d0; }
@@ -150,7 +72,6 @@ h1 {
   animation: correct-flash 0.6s;
 }
 
-/* Animação para resposta errada */
 @keyframes wrong-flash {
   0%   { box-shadow: 0 0 0 0 #ef444444; background: #fff; }
   30%  { box-shadow: 0 0 16px 8px #ef444488; background: #fecaca; }
@@ -160,19 +81,17 @@ h1 {
   animation: wrong-flash 0.6s;
 }
 
-/* Fundos temáticos para cada fase */
-.bg-bio {
-  background: url('Biologia.jpg') center center/cover no-repeat !important;
-}
-.bg-quim {
-  background: url('Quimica.jpg') center center/cover no-repeat !important;
-}
-.bg-fis {
-  background: url('Fisica.jpg') center center/cover no-repeat !important;
-}
-
-/* Ajuste para garantir contraste do conteúdo */
 #game-container, #login-area, #end-area {
   background-color: rgba(255,255,255,0.90);
   backdrop-filter: blur(2px);
+}
+
+@media (max-width: 600px) {
+  #game-container, #login-area, #end-area {
+    padding: 1rem !important;
+  }
+  #options button {
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
 }
