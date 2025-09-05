@@ -1,7 +1,9 @@
 // Jogo Educacional de Ciências da Natureza
-// Autor: Gabriel Marques! Código comentado para fácil manutenção
+// Autor: Gabriel Marques! Código revisado e melhorado por GitHub Copilot
 
-// Perguntas divididas por fases e temas
+// ----------------------
+// Dados das Fases e Perguntas
+// ----------------------
 const fases = [
   {
     nome: "1ª Fase – Biologia",
@@ -161,14 +163,12 @@ const fases = [
   }
 ];
 
-// Estado do jogo
 let faseAtual = 0;
 let perguntaAtual = 0;
 let pontos = 0;
 let dicasColetadas = [];
 let usuario = "";
 
-// Elementos DOM
 const mainBg = document.getElementById('main-bg');
 const faseLabel = document.getElementById('fase-label');
 const scoreEl = document.getElementById('score');
@@ -182,20 +182,15 @@ const notebook = document.getElementById('notebook');
 const notebookList = document.getElementById('notebook-list');
 const closeNotebook = document.getElementById('close-notebook');
 const userDisplay = document.getElementById('user-display');
-
-// Login
 const loginArea = document.getElementById('login-area');
 const loginBtn = document.getElementById('login-btn');
 const usernameInput = document.getElementById('username');
 const gameContainer = document.getElementById('game-container');
-
-// Tela final
 const endArea = document.getElementById('end-area');
 const endTitle = document.getElementById('end-title');
 const endScore = document.getElementById('end-score');
 const endNotebookList = document.getElementById('end-notebook-list');
 
-// Função para atualizar o tema visual e o fundo por fase
 function atualizarTema() {
   // Remove fundos anteriores
   mainBg.classList.remove('bg-bio', 'bg-quim', 'bg-fis', 'bg-green-100', 'bg-blue-100', 'bg-yellow-100', 'bg-purple-100');
@@ -208,11 +203,10 @@ function atualizarTema() {
   } else if (fase.nome.toLowerCase().includes('física')) {
     mainBg.classList.add('bg-fis');
   }
-  // (opcional) mantém cor de fallback
+  // Cor de fallback
   mainBg.classList.add(fase.tema);
 }
 
-// Mostra a pergunta atual
 function mostrarPergunta() {
   atualizarTema();
   const fase = fases[faseAtual];
@@ -234,12 +228,16 @@ function mostrarPergunta() {
     const btn = document.createElement('button');
     btn.className = "option-btn w-full bg-white border border-gray-300 rounded px-4 py-2 text-left transition";
     btn.textContent = opcao;
+    btn.setAttribute('tabindex', 0);
     btn.onclick = () => checarResposta(idx, btn);
+    btn.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') checarResposta(idx, btn);
+    };
     optionsEl.appendChild(btn);
   });
 }
 
-// Modificado para animar a caixa da opção clicada
+// Função para checar resposta
 function checarResposta(idx, btnClicado) {
   const fase = fases[faseAtual];
   const perguntaObj = fase.perguntas[perguntaAtual];
@@ -255,6 +253,8 @@ function checarResposta(idx, btnClicado) {
   if (idx === perguntaObj.correta) {
     pontos += 10;
     btnClicado.classList.add('animate-correct');
+    feedbackEl.textContent = "Correto! 🎉";
+    feedbackEl.style.color = "#22c55e";
     if (!dicasColetadas.includes(perguntaObj.dica)) {
       dicasColetadas.push(perguntaObj.dica);
     }
@@ -262,6 +262,8 @@ function checarResposta(idx, btnClicado) {
   } else {
     pontos = Math.max(0, pontos - 2);
     btnClicado.classList.add('animate-wrong');
+    feedbackEl.textContent = "Ops! Tente novamente.";
+    feedbackEl.style.color = "#ef4444";
     if (!dicasColetadas.includes(perguntaObj.dica)) {
       dicasColetadas.push(perguntaObj.dica);
     }
@@ -269,7 +271,6 @@ function checarResposta(idx, btnClicado) {
     Array.from(optionsEl.children).forEach(btn => btn.disabled = false);
   }
   scoreEl.textContent = `Pontos: ${pontos}`;
-  feedbackEl.textContent = '';
 }
 
 // Próxima pergunta ou fase
@@ -287,10 +288,12 @@ nextBtn.onclick = () => {
   }
 };
 
+// Tela final do jogo
 function mostrarFim() {
   atualizarTema();
   gameContainer.classList.add('hidden');
   endArea.classList.remove('hidden');
+  notebook.classList.add('hidden'); // Garante que o notebook feche ao finalizar
   // Calcula pontuação máxima
   let pontosMaximos = fases.reduce((acc, fase) => acc + fase.perguntas.length * 10, 0);
   endTitle.textContent = `Parabéns, ${usuario}! Você concluiu o quiz! 🎉`;
@@ -308,11 +311,17 @@ function mostrarFim() {
 notebookBtn.onclick = () => {
   notebook.classList.remove('hidden');
   notebookList.innerHTML = '';
-  dicasColetadas.forEach(dica => {
+  if (dicasColetadas.length === 0) {
     const li = document.createElement('li');
-    li.textContent = dica;
+    li.textContent = "Nenhuma dica coletada ainda!";
     notebookList.appendChild(li);
-  });
+  } else {
+    dicasColetadas.forEach(dica => {
+      const li = document.createElement('li');
+      li.textContent = dica;
+      notebookList.appendChild(li);
+    });
+  }
 };
 
 closeNotebook.onclick = () => {
@@ -325,6 +334,7 @@ loginBtn.onclick = () => {
   if (nome.length < 2) {
     usernameInput.classList.add('ring-2', 'ring-red-400');
     usernameInput.placeholder = "Digite um nome válido!";
+    usernameInput.focus();
     return;
   }
   usuario = nome;
@@ -332,6 +342,7 @@ loginBtn.onclick = () => {
   loginArea.classList.add('hidden');
   gameContainer.classList.remove('hidden');
   mostrarPergunta();
+  usernameInput.classList.remove('ring-2', 'ring-red-400');
 };
 
 // Permite Enter para login
@@ -352,6 +363,8 @@ fases.forEach(fase => {
   embaralharArray(fase.perguntas);
 });
 
+// Inicialização do Jogo
 window.addEventListener('DOMContentLoaded', function() {
-  // ...todo o seu código aqui...
+  // Foca no campo de nome ao carregar
+  usernameInput.focus();
 });
