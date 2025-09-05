@@ -1,6 +1,3 @@
-// Jogo Educacional de Ciências da Natureza
-// Autor: Gabriel Marques! Código revisado e melhorado por GitHub Copilot
-
 // ----------------------
 // Dados das Fases e Perguntas
 // ----------------------
